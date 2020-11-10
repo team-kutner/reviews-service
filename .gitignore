@@ -5,6 +5,7 @@
 npm
 npm-debug.log
 node_modules/
+githubworkflow.js
 
 pids
 *.pid
@@ -24,3 +25,5 @@ coverage
 build/
 dist/
 
+config/*
+!config/.gitkeep
