@@ -27,3 +27,4 @@ dist/
 
 config/*
 !config/.gitkeep
+possibleTests.js
