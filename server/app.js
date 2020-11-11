@@ -20,6 +20,7 @@ app.get('/api/reviews', async (req, res) => {
     for (const review of dbReviews) {
       reviewsWithComments.push(await review.populate('comments').execPopulate());
     }
+    reviewsWithComments.sort((a, b) => new Date(a.createdAt).valueOf() > new Date(b.createdAt).valueOf() ? -1 : 1);
 
     res.send({ratings, reviewsWithComments});
   } catch (e) {
