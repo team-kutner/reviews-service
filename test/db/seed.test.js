@@ -1,11 +1,11 @@
 const { internet } = require('faker');
-const setupSeed = require('./utils/setupSeed');
 const Comment = require('../../db/comment');
+const initSeed = require('../../db/initSeed');
 const Review = require('../../db/review');
 const User = require('../../db/user');
 const seedParts = require('../../db/utils/seed');
 
-beforeEach(setupSeed);
+beforeEach(initSeed);
 
 
 
@@ -17,13 +17,11 @@ it('should create 100 reviews and 51 comments', async () => {
   expect(comments.length).toBe(51);
 });
 
-it('author of all comments should be Kaladin', async () => {
-  const homeOwnerId = seedParts.homeOwner._id;
+it('author of all comments should be the same user', async () => {
 
   const comments = await Comment.find();
-  const homeOwnerWithComments = await seedParts.homeOwner.populate('comments').execPopulate();
-
-  expect(homeOwnerWithComments.comments.length).toBe(comments.length);
+  const sameAuthor = comments.every((comment) => comment.author.toString() === comments[0].author.toString());
+  expect(sameAuthor).toBe(true);
 });
 
 it('comments should be in the same month and year as their reviews', async () => {

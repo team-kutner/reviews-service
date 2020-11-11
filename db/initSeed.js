@@ -1,3 +1,30 @@
-const setupSeed = require("../test/db/utils/setupSeed");
+const Comment = require('./comment');
+const Review = require('./review');
+const User = require('./user');
+let seedParts = require('./utils/seed');
+require('mongoose');
 
-setupSeed();
+const initSeed = async () => {
+  const homeOwner = seedParts.generateHomeOwner();
+  const {reviews, users} = seedParts.generateUsersAndReviews();
+  const comments = seedParts.generateComments(homeOwner, reviews);
+
+  await User.deleteMany();
+  await Comment.deleteMany();
+  await Review.deleteMany();
+  await User.insertMany(users.concat(homeOwner));
+  await Review.insertMany(reviews);
+  await Comment.insertMany(comments);
+  return {
+    users,
+    reviews,
+    comments,
+    homeOwner
+  };
+};
+
+if (process.argv.includes('--init_seed')) {
+  initSeed();
+}
+
+module.exports = initSeed;

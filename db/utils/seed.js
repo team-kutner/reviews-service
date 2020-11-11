@@ -10,59 +10,71 @@ const User = require('../user');
 const determineIfShouldComment = require('./determineIfShouldComment');
 const randomInclusive = require('./randomInclusive');
 
-const homeOwner = new User({
-  _id: mongoose.Types.ObjectId(),
-  username: faker.name.firstName(),
-  avatar: faker.image.avatar()
-});
+const generateHomeOwner = () => {
 
-const reviews = [];
-const users = [];
-for (let i = 1; i <= 100; i++) {
-  const user = {
+  return new User({
     _id: mongoose.Types.ObjectId(),
     username: faker.name.firstName(),
     avatar: faker.image.avatar()
-  };
-
-  const randomMonth = randomInclusive(0, 11);
-  const review = {
-    _id: mongoose.Types.ObjectId(),
-    content: faker.lorem.paragraph(),
-    cleanliness: getChanceRating(),
-    accuracy: getChanceRating(),
-    communication: getChanceRating(),
-    location: getChanceRating(),
-    'check-in': getChanceRating(),
-    value: getChanceRating(),
-    author: user._id,
-    createdAt: new Date(2020, randomMonth)
-  };
-  users.push(user);
-  reviews.push(review);
-}
+  });
+};
 
 
-const comments = [];
-for (let i = 0; i < reviews.length; i++) {
-  const review = reviews[i];
-  if (!determineIfShouldComment(i)) {
-    continue;
+const generateUsersAndReviews = () => {
+  const reviews = [];
+  const users = [];
+  for (let i = 1; i <= 100; i++) {
+    const user = {
+      _id: mongoose.Types.ObjectId(),
+      username: faker.name.firstName(),
+      avatar: faker.image.avatar()
+    };
+
+    const randomMonth = randomInclusive(0, 11);
+    const review = {
+      _id: mongoose.Types.ObjectId(),
+      content: faker.lorem.paragraph(),
+      cleanliness: getChanceRating(),
+      accuracy: getChanceRating(),
+      communication: getChanceRating(),
+      location: getChanceRating(),
+      'check-in': getChanceRating(),
+      value: getChanceRating(),
+      author: user._id,
+      createdAt: new Date(2020, randomMonth)
+    };
+    users.push(user);
+    reviews.push(review);
   }
 
-  const comment = {
-    content: faker.lorem.paragraph(),
-    review: review._id,
-    author: homeOwner._id,
-    createdAt: review.createdAt
-  };
-  comments.push(comment);
-}
+  return {users, reviews};
+};
+
+const generateComments = (homeOwner, reviews) => {
+  const comments = [];
+  for (let i = 0; i < reviews.length; i++) {
+    const review = reviews[i];
+    if (!determineIfShouldComment(i)) {
+      continue;
+    }
+
+    const comment = {
+      content: faker.lorem.paragraph(),
+      review: review._id,
+      author: homeOwner._id,
+      createdAt: review.createdAt
+    };
+    comments.push(comment);
+  }
+
+  return comments;
+};
+
+
 module.exports = {
-  homeOwner,
-  comments,
-  reviews,
-  users
+  generateHomeOwner,
+  generateComments,
+  generateUsersAndReviews
 };
 
 // (async () => {
