@@ -14,9 +14,14 @@ const app = express();
 app.get('/api/reviews', async (req, res) => {
   try {
     const {homeOwner, users, reviews, comments} = await initSeed();
-    const result = aggregateReviewStars(reviews);
+    const ratings = aggregateReviewStars(reviews);
+    const dbReviews = await Review.find();
+    const reviewsWithComments = [];
+    for (const review of dbReviews) {
+      reviewsWithComments.push(await review.populate('comments').execPopulate());
+    }
 
-    res.send(result);
+    res.send({ratings, reviewsWithComments});
   } catch (e) {
     console.log(e, 'errrrr');
   }

@@ -1,4 +1,4 @@
-const roundOnFirstDecimal = require("./roundOnFirstDecimal");
+const roundOnFirstDecimal = require('./roundOnFirstDecimal');
 
 module.exports = (reviews) => {
   let reviewStats = reviews.reduce((acc, curr) => {
@@ -17,6 +17,7 @@ module.exports = (reviews) => {
     'check-in': 0,
     value: 0,
   });
+  console.log(reviewStats);
 
   reviewStats.cleanliness = roundOnFirstDecimal(reviewStats.cleanliness / 100);
   reviewStats.accuracy = roundOnFirstDecimal(reviewStats.accuracy / 100);
