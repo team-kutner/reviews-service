@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "aquabnb",
   "version": "",
   "description": "",
   "author": "",
@@ -8,10 +8,33 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "build": "webpack",
+    "dev:client": "webpack-dev-server --watch",
+    "dev:server": "env-cmd -f ./config/dev.env nodemon server/index.js",
+    "seed": "env-cmd -f ./config/dev.env node db/utils/seed.js"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.16",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "env-cmd": "^10.1.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "faker": "^5.1.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   }
 }
