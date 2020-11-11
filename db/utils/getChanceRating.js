@@ -18,4 +18,6 @@ module.exports = () => {
       rating = 5;
     }
   }
+
+  return rating;
 };

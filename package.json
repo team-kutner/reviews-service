@@ -10,7 +10,8 @@
   "scripts": {
     "build": "webpack",
     "dev:client": "webpack-dev-server --watch",
-    "dev:server": "env-cmd -f ./config/dev.env nodemon server/index.js"
+    "dev:server": "env-cmd -f ./config/dev.env nodemon server/index.js",
+    "seed": "env-cmd -f ./config/dev.env node db/utils/seed.js"
   },
   "dependencies": {
     "express": "^4.17.1",
