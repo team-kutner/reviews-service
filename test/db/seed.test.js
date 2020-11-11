@@ -1,37 +1,35 @@
 const { internet } = require('faker');
+const setupSeed = require('./utils/setupSeed');
 const Comment = require('../../db/comment');
 const Review = require('../../db/review');
 const User = require('../../db/user');
 const seedParts = require('../../db/utils/seed');
-const clearDB = require('../utils/clearDB');
 
-beforeEach(clearDB);
+beforeEach(setupSeed);
 
-it('DB should have a clear state', async () => {
-  const users = await User.find();
-  const reviews = await Review.find();
-  const comments = await Comment.find();
 
-  expect(users.length).toBe(0);
-  expect(reviews.length).toBe(0);
-  expect(comments.length).toBe(0);
-
-});
 
 it('should create 100 reviews and 51 comments', async () => {
-  const reviews = await Review.insertMany(seedParts.reviews);
-  const comments = await Comment.insertMany(seedParts.comments);
+  const reviews = await Review.find();
+  const comments = await Comment.find();
 
   expect(reviews.length).toBe(100);
   expect(comments.length).toBe(51);
 });
 
 it('author of all comments should be Kaladin', async () => {
-  const kalId = seedParts.homeOwnerKal._id;
-  const reviews = await Review.insertMany(seedParts.reviews);
-  const comments = await Comment.insertMany(seedParts.comments);
+  const homeOwnerId = seedParts.homeOwner._id;
 
-  expect(comments.every((comment) => comment.author === kalId)).toBe(true);
-  const kalWithComments = await seedParts.homeOwnerKal.populate('comments').execPopulate();
-  expect(kalWithComments.comments.length).toBe(51);
+  const comments = await Comment.find();
+  const homeOwnerWithComments = await seedParts.homeOwner.populate('comments').execPopulate();
+
+  expect(homeOwnerWithComments.comments.length).toBe(comments.length);
+});
+
+it('comments should be in the same month and year as their reviews', async () => {
+  const comments = await Comment.find();
+  for (const comment of comments) {
+    const withReview = await comments[0].populate('review').execPopulate();
+    expect(new Date(withReview.createdAt).valueOf()).toBe(new Date(withReview.review.createdAt).valueOf());
+  }
 });

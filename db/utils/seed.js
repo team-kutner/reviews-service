@@ -10,7 +10,11 @@ const User = require('../user');
 const determineIfShouldComment = require('./determineIfShouldComment');
 const randomInclusive = require('./randomInclusive');
 
-const homeOwnerKal = new User({username: 'Kal', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/Shriiiiimp/128.jpg'});
+const homeOwner = new User({
+  _id: mongoose.Types.ObjectId(),
+  username: faker.name.firstName(),
+  avatar: faker.image.avatar()
+});
 
 const reviews = [];
 const users = [];
@@ -49,19 +53,20 @@ for (let i = 0; i < reviews.length; i++) {
   const comment = {
     content: faker.lorem.paragraph(),
     review: review._id,
-    author: homeOwnerKal._id,
+    author: homeOwner._id,
     createdAt: review.createdAt
   };
   comments.push(comment);
 }
 module.exports = {
-  homeOwnerKal,
+  homeOwner,
   comments,
-  reviews
+  reviews,
+  users
 };
 
 // (async () => {
-//   await kal.save();
+//   await homeOwner.save();
 //   const dbReviews = await Review.insertMany(reviews);
 //   const dbComments = await Comment.insertMany(comments);
 
