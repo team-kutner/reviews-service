@@ -8,11 +8,6 @@ const reviewSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  username: {
-    type: String,
-    required: true,
-    trim: true
-  },
   cleanliness: {
     type: Number,
     validate: wholeNumBetween05,
@@ -42,16 +37,29 @@ const reviewSchema = new mongoose.Schema({
     type: Number,
     validate: wholeNumBetween05,
     required: true
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 });
 
 reviewSchema.virtual('comments', {
   ref: 'Comment',
-  foreignField: 'review',
-  localField: '_id'
+  localField: '_id',
+  foreignField: 'review'
 });
+// userSchema.virtual('tasks', {
+//   ref: 'Task',
+//   foreignField: 'owner',
+//   localField: '_id'
+// })
+
 
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;

@@ -6,18 +6,20 @@ const commentSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  username: {
-    type: String,
-    required: true,
-    trim: true
-  },
   review: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'Review'
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
