@@ -4,14 +4,22 @@ const faker = require('faker');
 const getChanceRating = require('./getChanceRating');
 
 
-const JohnPFP = 'https://s3.amazonaws.com/uifaces/faces/twitter/Shriiiiimp/128.jpg';
-
 const Review = require('../review');
 const Comment = require('../comment');
+const User = require('../user');
 const determineIfShouldComment = require('./determineIfShouldComment');
 
+const kal = new User({username: 'Kal', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/Shriiiiimp/128.jpg'});
+
 const reviews = [];
+const users = [];
 for (let i = 1; i <= 100; i++) {
+  const user = {
+    _id: mongoose.Types.ObjectId(),
+    username: faker.name.firstName(),
+    avatar: faker.image.avatar()
+  };
+
 
   const review = {
     _id: mongoose.Types.ObjectId(),
@@ -21,11 +29,14 @@ for (let i = 1; i <= 100; i++) {
     communication: getChanceRating(),
     location: getChanceRating(),
     'check-in': getChanceRating(),
-    username: faker.name.firstName(),
     value: getChanceRating(),
+    author: user._id
   };
+  users.push(user);
   reviews.push(review);
 }
+
+
 const comments = [];
 for (let i = 0; i < reviews.length; i++) {
   const review = reviews[i];
@@ -36,13 +47,14 @@ for (let i = 0; i < reviews.length; i++) {
   const comment = {
     content: faker.lorem.paragraph(),
     review: review._id,
-    username: 'John'
+    author: kal._id
   };
   comments.push(comment);
 }
 
 
 (async () => {
+  await kal.save();
   const dbReviews = await Review.insertMany(reviews);
   const dbComments = await Comment.insertMany(comments);
 
