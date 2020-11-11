@@ -9,7 +9,7 @@ const Comment = require('../comment');
 const User = require('../user');
 const determineIfShouldComment = require('./determineIfShouldComment');
 
-const kal = new User({username: 'Kal', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/Shriiiiimp/128.jpg'});
+const homeOwnerKal = new User({username: 'Kal', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/Shriiiiimp/128.jpg'});
 
 const reviews = [];
 const users = [];
@@ -47,21 +47,25 @@ for (let i = 0; i < reviews.length; i++) {
   const comment = {
     content: faker.lorem.paragraph(),
     review: review._id,
-    author: kal._id
+    author: homeOwnerKal._id
   };
   comments.push(comment);
 }
+module.exports = {
+  homeOwnerKal,
+  comments,
+  reviews
+};
 
+// (async () => {
+//   await kal.save();
+//   const dbReviews = await Review.insertMany(reviews);
+//   const dbComments = await Comment.insertMany(comments);
 
-(async () => {
-  await kal.save();
-  const dbReviews = await Review.insertMany(reviews);
-  const dbComments = await Comment.insertMany(comments);
-
-  const reviews2 = await Review.find();
-  const possibleComments = await reviews2[2].populate('comments').execPopulate();
-  console.log(possibleComments);
-})();
+//   const reviews2 = await Review.find();
+//   const possibleComments = await reviews2[2].populate('comments').execPopulate();
+//   console.log(possibleComments);
+// })();
 
 
 
