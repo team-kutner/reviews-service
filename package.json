@@ -13,7 +13,6 @@
     "dev:server": "env-cmd -f ./config/dev.env nodemon server/index.js"
   },
   "dependencies": {
-    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.16",
@@ -27,10 +26,14 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "babel-loader": "^8.0.6",
+    "env-cmd": "^10.1.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "faker": "^5.1.0",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.6",
+    "supertest": "^6.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "webpack-dev-server": "^3.9.0"
   }
 }
