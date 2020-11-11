@@ -8,6 +8,7 @@ const Review = require('../review');
 const Comment = require('../comment');
 const User = require('../user');
 const determineIfShouldComment = require('./determineIfShouldComment');
+const randomInclusive = require('./randomInclusive');
 
 const homeOwnerKal = new User({username: 'Kal', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/Shriiiiimp/128.jpg'});
 
@@ -20,7 +21,7 @@ for (let i = 1; i <= 100; i++) {
     avatar: faker.image.avatar()
   };
 
-
+  const randomMonth = randomInclusive(0, 11);
   const review = {
     _id: mongoose.Types.ObjectId(),
     content: faker.lorem.paragraph(),
@@ -30,7 +31,8 @@ for (let i = 1; i <= 100; i++) {
     location: getChanceRating(),
     'check-in': getChanceRating(),
     value: getChanceRating(),
-    author: user._id
+    author: user._id,
+    createdAt: new Date(2020, randomMonth)
   };
   users.push(user);
   reviews.push(review);
@@ -47,7 +49,8 @@ for (let i = 0; i < reviews.length; i++) {
   const comment = {
     content: faker.lorem.paragraph(),
     review: review._id,
-    author: homeOwnerKal._id
+    author: homeOwnerKal._id,
+    createdAt: review.createdAt
   };
   comments.push(comment);
 }
