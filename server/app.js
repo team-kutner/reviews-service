@@ -1,5 +1,5 @@
 const express = require('express');
-
+const cors = require('cors');
 require('../db/mongoose');
 const Review = require('../db/review');
 const Comment = require('../db/comment');
@@ -10,8 +10,10 @@ const aggregateReviewStars = require('./utils/aggregateReviewStars');
 
 
 const app = express();
+app.use(cors);
 
 app.get('/api/reviews', async (req, res) => {
+  console.log('/api/reviews attempted');
   try {
     const {homeOwner, users, reviews, comments} = await initSeed();
     const ratings = aggregateReviewStars(reviews);
@@ -28,5 +30,7 @@ app.get('/api/reviews', async (req, res) => {
   }
 
 });
+
+app.get('/hello', (req, res) => res.send('hello world'));
 
 module.exports = app;
