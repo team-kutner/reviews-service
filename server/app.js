@@ -10,7 +10,7 @@ const aggregateReviewStars = require('./utils/aggregateReviewStars');
 
 
 const app = express();
-app.use(cors);
+app.use(cors());
 
 app.get('/api/reviews', async (req, res) => {
   console.log('/api/reviews attempted');

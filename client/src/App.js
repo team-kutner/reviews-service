@@ -13,9 +13,16 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 const theme = {
-  smFont: 12,
-  mdFont: 16,
-  lgFont: 24
+  xsFont: '12xpx', //rating #
+  smFont: '14px', //date
+  mdFont: '16px', // everything but date+rating #, show more
+
+  smWeight: 400, //date and content, rating name
+  mdWeight: 600, //name, read more, rating #, show more
+
+  darkGray: '#000000', //read more
+  gray: '#222', //name, content, rating name, rating #, show more
+  lightGray: '#717171' //date
 };
 
 export default () => {
