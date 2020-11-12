@@ -4,14 +4,17 @@ const User = require('./user');
 let seedParts = require('./utils/seed');
 require('mongoose');
 
-const initSeed = async () => {
+const initSeed = async (deleteMany = true) => {
   const homeOwner = seedParts.generateHomeOwner();
   const {reviews, users} = seedParts.generateUsersAndReviews();
   const comments = seedParts.generateComments(homeOwner, reviews);
 
-  await User.deleteMany();
-  await Comment.deleteMany();
-  await Review.deleteMany();
+  if (deleteMany) {
+    await User.deleteMany();
+    await Comment.deleteMany();
+    await Review.deleteMany();
+  }
+
   await User.insertMany(users.concat(homeOwner));
   await Review.insertMany(reviews);
   await Comment.insertMany(comments);
@@ -19,7 +22,7 @@ const initSeed = async () => {
     users,
     reviews,
     comments,
-    homeOwner
+    homeOwneradaww
   };
 };
 

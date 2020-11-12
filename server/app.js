@@ -12,6 +12,10 @@ const aggregateReviewStars = require('./utils/aggregateReviewStars');
 const app = express();
 app.use(cors());
 
+//refactor this later so the seed script doesn't always delete what's in there
+//have it check to make sure the home being searched for has reviews;
+//  if it does have reviews, return and format those.
+//  if it doesn't, then go ahead and generate new ones and format and return those.
 app.get('/api/reviews', async (req, res) => {
   console.log('/api/reviews attempted');
   try {
