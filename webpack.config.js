@@ -1,7 +1,7 @@
 const path = require('path');
 
-const src = path.resolve('./client/src/index.js');
-const dist = path.resolve('./client/dist/');
+const src = path.resolve('./client/index.js');
+const dist = path.resolve('./public');
 console.log(src, dist);
 
 module.exports = {
@@ -19,6 +19,6 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, 'client', 'dist')
+    contentBase: path.join(__dirname, 'public')
   }
 };

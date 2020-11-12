@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import ReviewsSection from './ReviewsSection';
+import ReviewsSection from './components/ReviewsSection';
 
 
 
@@ -14,8 +14,9 @@ const GlobalStyles = createGlobalStyle`
 `;
 const theme = {
   xsFont: '12xpx', //rating #
-  smFont: '14px', //date
+  smFont: '14px', //date, rating name in modal
   mdFont: '16px', // everything but date+rating #, show more
+  xlFont: '24px', //review count
 
   smWeight: 400, //date and content, rating name
   mdWeight: 600, //name, read more, rating #, show more
