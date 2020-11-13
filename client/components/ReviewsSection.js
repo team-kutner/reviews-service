@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-
+import styled from 'styled-components';
+import Ratings from './Ratings';
+import ReviewsList from './ReviewsList';
+const SectionContainer = styled.div`
+  padding-top: 48px;
+  padding-bottom: 48px;
+`
 
 export default (props) => {
   useEffect( () => {
@@ -10,8 +16,9 @@ export default (props) => {
   }, []);
 
   return (
-    <div>
-      reviews sectionnnn
-    </div>
+    <SectionContainer>
+      <Ratings/>
+      <ReviewsList />
+    </SectionContainer>
   );
 };

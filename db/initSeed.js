@@ -22,7 +22,7 @@ const initSeed = async (deleteMany = true) => {
     users,
     reviews,
     comments,
-    homeOwneradaww
+    homeOwner
   };
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import ReviewsSection from './components/ReviewsSection';
 
 
@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 const theme = {
-  xsFont: '12xpx', //rating #
+  xsFont: '12px', //rating #
   smFont: '14px', //date, rating name in modal
   mdFont: '16px', // everything but date+rating #, show more
   xlFont: '24px', //review count
@@ -23,15 +23,30 @@ const theme = {
 
   darkGray: '#000000', //read more
   gray: '#222', //name, content, rating name, rating #, show more
-  lightGray: '#717171' //date
+  lightGray: '#717171', //date,
 };
+
+const AppContainer = styled.div`
+  width: 1128px;
+  height: 754px;
+  margin-left: auto;
+  margin-right: auto;
+`
+const HorizontalRule = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: rgb(221, 221, 221);
+`
 
 export default () => {
   return (
     <>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <ReviewsSection />
+        <AppContainer>
+          <HorizontalRule />
+          <ReviewsSection />
+        </AppContainer>
       </ThemeProvider>
     </>
   );
