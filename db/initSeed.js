@@ -15,13 +15,13 @@ const initSeed = async (deleteMany = true) => {
     await Review.deleteMany();
   }
 
-  await User.insertMany(users.concat(homeOwner));
-  await Review.insertMany(reviews);
-  await Comment.insertMany(comments);
+  const dbUsers = await User.insertMany(users.concat(homeOwner));
+  const dbReviews = await Review.insertMany(reviews);
+  const dbComments = await Comment.insertMany(comments);
   return {
-    users,
-    reviews,
-    comments,
+    users:dbUsers,
+    reviews:dbReviews,
+    comments:dbComments,
     homeOwner
   };
 };

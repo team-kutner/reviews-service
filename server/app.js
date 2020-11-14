@@ -17,18 +17,27 @@ app.use(cors());
 //  if it does have reviews, return and format those.
 //  if it doesn't, then go ahead and generate new ones and format and return those.
 app.get('/api/reviews', async (req, res) => {
-  console.log('/api/reviews attempted');
   try {
     const {homeOwner, users, reviews, comments} = await initSeed();
-    const ratings = aggregateReviewStars(reviews);
-    const dbReviews = await Review.find();
-    const reviewsWithComments = [];
-    for (const review of dbReviews) {
-      reviewsWithComments.push(await review.populate('comments').execPopulate());
-    }
-    reviewsWithComments.sort((a, b) => new Date(a.createdAt).valueOf() > new Date(b.createdAt).valueOf() ? -1 : 1);
 
-    res.send({ratings, reviewsWithComments});
+    const ratings = aggregateReviewStars(reviews);
+
+    for (const review of reviews) {
+      await review.populate('comments').execPopulate()
+      // reviewsWithComments.push(await review.populate('comments').execPopulate());
+      await review.populate('author').execPopulate()
+      if (!review.comments.length) continue
+      review.comments[0].populate('author').execPopulate()
+    }
+
+
+    // for (const review of reviewsWithComments) {
+
+    // }
+    // console.log(reviews)
+    reviews.sort((a, b) => new Date(a.createdAt).valueOf() > new Date(b.createdAt).valueOf() ? -1 : 1);
+
+    res.send({ratings, reviewsWithComments:reviews});
   } catch (e) {
     console.log(e, 'errrrr');
   }
