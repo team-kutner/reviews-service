@@ -10,9 +10,11 @@ const Container = styled.div`
 `
 
 
-const ReviewsList = () => {
+const ReviewsList = (props) => {
+  const {reviews} = props
   return (
     <Container>
+      {reviews.map(({review}) => <ReviewsListItem review={review}/>)}
       <ReviewsListItem/>
       <ReviewsListItem/>
       <ReviewsListItem/>

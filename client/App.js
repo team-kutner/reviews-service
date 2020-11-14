@@ -16,7 +16,7 @@ const theme = {
   xsFont: '12px', //rating #
   smFont: '14px', //date, rating name in modal
   mdFont: '16px', // everything but date+rating #, show more
-  xlFont: '24px', //review count
+  xlFont: '22px', //review count
 
   smWeight: 400, //date and content, rating name
   mdWeight: 600, //name, read more, rating #, show more

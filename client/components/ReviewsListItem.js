@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ReviewsListItem = () => {
+const ReviewsListItem = (props) => {
+  const {}
   return (
     <Container>
       <AvatarContainer>

@@ -19,12 +19,13 @@ module.exports = (reviews) => {
   });
   console.log(reviewStats);
 
-  reviewStats.cleanliness = roundOnFirstDecimal(reviewStats.cleanliness / 100);
-  reviewStats.accuracy = roundOnFirstDecimal(reviewStats.accuracy / 100);
-  reviewStats.communication = roundOnFirstDecimal(reviewStats.communication / 100);
-  reviewStats['check-in'] = roundOnFirstDecimal(reviewStats['check-in'] / 100);
-  reviewStats.value = roundOnFirstDecimal(reviewStats.value / 100);
-  reviewStats.location = roundOnFirstDecimal(reviewStats.location / 100);
+  const desiredOutput = {}
+  desiredOutput.Cleanliness = roundOnFirstDecimal(reviewStats.cleanliness / 100);
+  desiredOutput.Accuracy = roundOnFirstDecimal(reviewStats.accuracy / 100);
+  desiredOutput.Communication = roundOnFirstDecimal(reviewStats.communication / 100);
+  desiredOutput['Check-in'] = roundOnFirstDecimal(reviewStats['check-in'] / 100);
+  desiredOutput.Value = roundOnFirstDecimal(reviewStats.value / 100);
+  desiredOutput.Location = roundOnFirstDecimal(reviewStats.location / 100);
 
-  return reviewStats;
+  return desiredOutput;
 };

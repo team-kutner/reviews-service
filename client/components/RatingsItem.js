@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const RatingsItem = () => {
+const RatingsItem = (props) => {
+  const {ratingName, ratingNumber} = props
   return (
     <ItemContainer>
       <ItemContainerParts>
-        <RatingName>Communication</RatingName>
+        <RatingName>{ratingName}</RatingName>
         <BarRatingNumContainer>
           <BarFullPercent>
-            <BarUsedPercent></BarUsedPercent>
+            <BarUsedPercent used={ratingNumber * 10 * 2}></BarUsedPercent>
           </BarFullPercent>
 
-          <RatingNumber>2.5</RatingNumber>
+          <RatingNumber>{ratingNumber}</RatingNumber>
         </BarRatingNumContainer>
       </ItemContainerParts>
     </ItemContainer>
@@ -65,7 +66,7 @@ const BarUsedPercent = styled.span`
   bottom: 0px;
   background: ${props => props.theme.gray};
   border-radius: 2px;
-  width: 64%;
+  width: ${props => `${props.used}%`};
 `
 
 
