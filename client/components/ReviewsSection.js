@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Modal from './modal/Modal';
 import Ratings from './Ratings';
 import ReviewsList from './ReviewsList';
 
 export default (props) => {
   const [ratings, setRatings] = useState({})
   const [reviewsWithComments, setReviewsWithComments] = useState([])
+  const [modalStatus, setModalStatus] = useState(false)
 
   useEffect( () => {
     (async () => {
@@ -22,8 +24,9 @@ export default (props) => {
       <ReviewsList reviews={reviewsWithComments.slice(0, 6)}/>
 
       <div>
-        <OpenModal>Show all 4 reviews</OpenModal>
+        <OpenModal onClick={() => setModalStatus(true)}>Show all {reviewsWithComments.length} reviews</OpenModal>
       </div>
+      {modalStatus && <Modal ratings={ratings} totalReviews={reviewsWithComments.length} setModalStatus={setModalStatus}/>}
     </SectionContainer>
   );
 };

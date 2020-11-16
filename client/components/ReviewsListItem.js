@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ReviewsListItem = (props) => {
-  // const {}
+  let {author: {username, avatar}, content, createdAt} = props.review
+  const date = new window.Date(createdAt)
+  const month = date.toLocaleString('default', { month: 'long' })
+  const year = date.getFullYear()
+  const [readMoreAvail, setReadMoreAvail] = useState(content.length > 180);
+
+
+
   return (
     <Container>
       <AvatarContainer>
-        <AvatarImage src={'https://s3.amazonaws.com/uifaces/faces/twitter/maximsorokin/128.jpg'}/>
+        <AvatarImage src={avatar}/>
         <UsernameAndDateContainer>
-          <Username>Bob</Username>
-          <Date>October 2020</Date>
+          <Username>{username}</Username>
+          <Date>{month} {year}</Date>
         </UsernameAndDateContainer>
       </AvatarContainer>
 
       <div>
-        <TextContent>Great stay in Cottonwood. The kitchen has everything you need for an extended stay and the deck is great for grilling and enjoying views of the surrounding hills. Great neighbors i…</TextContent>
-        <ReadMoreButton>read more</ReadMoreButton>
+        <TextContent>{readMoreAvail ? content.substring(0, 180) + '...' : content}</TextContent>
+        {readMoreAvail && <ReadMoreButton onClick={() => setReadMoreAvail(false)}>read more</ReadMoreButton>}
       </div>
     </Container>
   );
@@ -47,7 +54,7 @@ const TextContent = styled.div`
   font-size: ${props => props.theme.mdFont};
   line-height: 24px;
   word-break: break-word;
-  color: ${props => props.theme.lightGray};
+  color: ${props => props.theme.gray};
 `
 
 

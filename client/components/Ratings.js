@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import calcOverallRating from '../utils/calcOverallRating';
 import RatingsItem from './RatingsItem';
 
 export default (props) => {
-  const {ratings, totalReviews} = props;
+  const {ratings, totalReviews, modal=false } = props;
 
 
   return (
@@ -14,7 +14,7 @@ export default (props) => {
         <TotalReviewsText>{calcOverallRating(ratings)} ({totalReviews} reviews)</TotalReviewsText>
       </RatingCountContainer>
 
-      <RatingsFlexContainer>
+      <RatingsFlexContainer modal={modal}>
         {Object.entries(ratings).map(([ratingName, ratingNumber]) => (
           <RatingsItem
             key={ratingName}
@@ -46,6 +46,10 @@ const RatingsFlexContainer = styled.div`
   display: flex;
   align-items: stretch;
 
+  flex-direction: ${props => props.modal ? 'column' : 'row'};
+  ${props => props.modal && css`
+    width: 80%
+  `}
   justify-content: flex-start;
   flex-wrap: wrap;
   margin-bottom: 24px;

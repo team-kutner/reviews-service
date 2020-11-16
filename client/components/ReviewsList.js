@@ -14,13 +14,7 @@ const ReviewsList = (props) => {
   const {reviews} = props
   return (
     <Container>
-      {reviews.map(({review}) => <ReviewsListItem review={review}/>)}
-      <ReviewsListItem/>
-      <ReviewsListItem/>
-      <ReviewsListItem/>
-      <ReviewsListItem/>
-      <ReviewsListItem/>
-      <ReviewsListItem/>
+      {reviews.map((review) => <ReviewsListItem review={review} key={review.id}/>)}
     </Container>
   );
 }
