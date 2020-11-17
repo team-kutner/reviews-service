@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, {keyframes} from 'styled-components';
 import Ratings from '../Ratings';
 import ReviewsList from '../ReviewsList';
+import svg from '../../assets/images/Qsearch.svg'
 
 const Modal = (props) => {
   const {ratings, totalReviews, setModalStatus, reviews} = props
   console.log(reviews, 'from modal')
+  const [searchFocus, setSearchFocus] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
      document.body.style.overflow = 'hidden';
@@ -24,11 +27,19 @@ const Modal = (props) => {
         <ContentFlex>
 
           <ReviewsSearchContainer>
-            {/* <SearchContainer>
+            <SearchContainer searchFocus={searchFocus}>
+              <SearchIcon searchFocus={searchFocus}/>
 
-            </SearchContainer> */}
+              <SearchInput
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search reviews"
+                onFocus={(e) => setSearchFocus(true)}
+                onBlur={() => setSearchFocus(false)}
+              />
+            </SearchContainer>
 
-            <ReviewsList reviews={reviews} modal={true}/>
+            <ReviewsList reviews={reviews} modal={true} searchTerm={searchTerm}/>
           </ReviewsSearchContainer>
         </ContentFlex>
       </ModalContainer>
@@ -36,6 +47,30 @@ const Modal = (props) => {
   );
 }
 
+const SearchIcon = styled.img`
+  height:16px;
+  width: 16px;
+  margin-right: 8px;
+  content: url(${svg});
+  /* filter: invert(1); */
+`
+const SearchInput = styled.input`
+  width: 100% !important;
+  border: none !important;
+  outline: none !important;
+  margin: 0px 8px 0px 0px !important;
+  min-height: 1px !important;
+  color: rgb(34, 34, 34) !important;
+  background-color: transparent !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 20px !important;
+  appearance: none !important;
+  flex: 1 1 0% !important;
+  padding: 0px !important;
+  text-overflow: ellipsis !important;
+`
 
 const StickyRatingsContainer = styled.div`
   position: fixed;
@@ -48,18 +83,18 @@ const ReviewsSearchContainer = styled.div`
 
 `
 
+
+
 const SearchContainer = styled.div`
   margin-bottom: 36px;
   display: flex;
   width: 100%;
-  align-items: center;
-  border: none !important;
   color: rgb(34, 34, 34) !important;
   background-color: rgb(247, 247, 247) !important;
   align-items: center !important;
   padding: 12px 12px 12px 16px !important;
   border-radius: 100px !important;
-  box-shadow: rgb(176, 176, 176) 0px 0px 0px 1px inset !important;
+  box-shadow: ${props => !props.searchFocus ? 'rgb(176, 176, 176) 0px 0px 0px 1px inset !important' : 'rgb(34, 34, 34) 0px 0px 0px 2px inset !important'};
 `
 const HeadContainer = styled.div`
   height: 72px;

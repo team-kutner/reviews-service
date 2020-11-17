@@ -62,7 +62,7 @@ const TextContent = styled.div`
 
 const AllContentContainer = styled.div`
   ${props => props.isComment && css`
-    margin-left: 32px;
+    margin-left: 64px;
   `}
 
 `

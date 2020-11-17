@@ -15,7 +15,17 @@ module.exports = {
       loader: 'babel-loader',
       test: /\.js$/,
       exclude: /node_modules/
-    }]
+    },{
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'public/images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      }]
   },
   devtool: 'inline-source-map',
   devServer: {

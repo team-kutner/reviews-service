@@ -5,10 +5,10 @@ import ReviewsListItem from './ReviewsListItem';
 
 
 const ReviewsList = (props) => {
-  const {reviews, modal=false} = props
+  const {reviews, modal=false, searchTerm = ''} = props
   return (
     <Container modal={modal}>
-      {reviews.map((review) => <ReviewsListItem review={review} key={review.id} modal={modal}/>)}
+      {reviews.filter((review) => review.content.includes(searchTerm)).map((review) => <ReviewsListItem review={review} key={review.id} modal={modal}/>)}
     </Container>
   );
 }
