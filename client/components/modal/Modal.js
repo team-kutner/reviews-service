@@ -17,7 +17,7 @@ const Modal = (props) => {
       <ModalContainer onClick={(e) => e.stopPropagation()}>
           <StickyRatingsContainer>
             <HeadContainer>
-              <CloseModal src='https://i.imgur.com/2lWY5UV.png'/>
+              <CloseModal src='https://i.imgur.com/2lWY5UV.png' onClick={() => setModalStatus(false)}/>
             </HeadContainer>
             <Ratings ratings={ratings} totalReviews={totalReviews} modal={true}/>
           </StickyRatingsContainer>
@@ -39,7 +39,7 @@ const Modal = (props) => {
 
 const StickyRatingsContainer = styled.div`
   position: fixed;
-  width: 17%;
+  /* width: 17%; */
   margin-left: 24px;
 `
 const ReviewsSearchContainer = styled.div`

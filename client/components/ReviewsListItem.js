@@ -12,19 +12,19 @@ const ReviewsListItem = (props) => {
 
 
   return (
-    <Container modal={modal}>
+    <Container modal={modal} isComment={isComment}>
       <AvatarContainer>
         <AvatarImage src={avatar}/>
         <UsernameAndDateContainer>
-          <Username>{username}</Username>
+          <Username>{isComment && 'Response from'} {username}</Username>
           <Date>{month} {year}</Date>
         </UsernameAndDateContainer>
       </AvatarContainer>
 
-      <div>
+      <AllContentContainer isComment={isComment}>
         <TextContent>{readMoreAvail ? content.substring(0, 180) + '...' : content}</TextContent>
         {readMoreAvail && <ReadMoreButton onClick={() => setReadMoreAvail(false)}>read more</ReadMoreButton>}
-      </div>
+      </AllContentContainer>
       {modal && !isComment && !!comments.length && <ReviewsListItem review={comments[0]} modal={modal} key={comments[0].id} isComment={true}/>}
     </Container>
   );
@@ -57,6 +57,14 @@ const TextContent = styled.div`
   line-height: 24px;
   word-break: break-word;
   color: ${props => props.theme.gray};
+
+`
+
+const AllContentContainer = styled.div`
+  ${props => props.isComment && css`
+    margin-left: 32px;
+  `}
+
 `
 
 
@@ -65,7 +73,15 @@ const Container = styled.div`
     width: 41.66%;
     margin-right: 8.33%;
   `}
-  margin-bottom: 40px;
+
+  ${props => !props.isComment && css`
+    margin-bottom: 40px;
+  `}
+
+  ${props => props.isComment && css`
+    margin-top: 30px !important;
+    margin-left: 32px !important;
+  `}
 `;
 
 const AvatarContainer = styled.div`
