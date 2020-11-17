@@ -14,7 +14,7 @@ it('should create 100 reviews and 51 comments', async () => {
   const comments = await Comment.find();
 
   expect(reviews.length).toBe(100);
-  expect(comments.length).toBe(51);
+  expect(comments.length).toBe(52);
 });
 
 it('author of all comments should be the same user', async () => {
