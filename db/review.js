@@ -8,6 +8,10 @@ const reviewSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  home: {
+    type: String,
+    required: true
+  },
   cleanliness: {
     type: Number,
     validate: wholeNumBetween05,

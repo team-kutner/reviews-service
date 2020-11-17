@@ -4,9 +4,9 @@ const User = require('./user');
 let seedParts = require('./utils/seed');
 require('mongoose');
 
-const initSeed = async (deleteMany = true) => {
+const initSeed = async (home='5', deleteMany = true) => {
   const homeOwner = seedParts.generateHomeOwner();
-  const {reviews, users} = seedParts.generateUsersAndReviews();
+  const {reviews, users} = seedParts.generateUsersAndReviews(home);
   const comments = seedParts.generateComments(homeOwner, reviews);
 
   if (deleteMany) {

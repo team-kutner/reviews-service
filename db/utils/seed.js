@@ -20,7 +20,7 @@ const generateHomeOwner = () => {
 };
 
 
-const generateUsersAndReviews = () => {
+const generateUsersAndReviews = (home) => {
   const reviews = [];
   const users = [];
   for (let i = 1; i <= 100; i++) {
@@ -38,6 +38,7 @@ const generateUsersAndReviews = () => {
       accuracy: getChanceRating(),
       communication: getChanceRating(),
       location: getChanceRating(),
+      home,
       'check-in': getChanceRating(),
       value: getChanceRating(),
       author: user._id,
