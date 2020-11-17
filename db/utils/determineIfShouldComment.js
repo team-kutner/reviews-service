@@ -7,6 +7,8 @@ module.exports = (i) => {
     shouldComment = true;
   } else if (iString.includes('2')) {
     shouldComment = true;
+  } else if (i === 0) {
+    shouldComment = true;
   }
 
   return shouldComment;
