@@ -25,7 +25,7 @@ app.get('/api/homes/:id/reviews', async (req, res) => {
 
     reviews = await Review.find({home: id})
     if (!reviews.length) {
-      const {homeOwner, users, reviews:seedReviews, comments} = await initSeed(id);
+      const {homeOwner, users, reviews:seedReviews, comments} = await initSeed(id, false);
       reviews = seedReviews
     }
 
