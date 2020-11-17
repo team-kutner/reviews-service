@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const ReviewsListItem = (props) => {
-  const {modal} = props
-  let {author: {username, avatar}, content, createdAt} = props.review
+  const {modal, isComment=false} = props
+  let {author: {username, avatar}, content, createdAt, comments=[]} = props.review
   const date = new window.Date(createdAt)
   const month = date.toLocaleString('default', { month: 'long' })
   const year = date.getFullYear()
@@ -25,6 +25,7 @@ const ReviewsListItem = (props) => {
         <TextContent>{readMoreAvail ? content.substring(0, 180) + '...' : content}</TextContent>
         {readMoreAvail && <ReadMoreButton onClick={() => setReadMoreAvail(false)}>read more</ReadMoreButton>}
       </div>
+      {modal && !isComment && !!comments.length && <ReviewsListItem review={comments[0]} modal={modal} key={comments[0].id} isComment={true}/>}
     </Container>
   );
 }

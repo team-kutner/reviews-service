@@ -5,7 +5,7 @@ import ReviewsList from '../ReviewsList';
 
 const Modal = (props) => {
   const {ratings, totalReviews, setModalStatus, reviews} = props
-
+  console.log(reviews, 'from modal')
 
   useEffect(() => {
      document.body.style.overflow = 'hidden';
