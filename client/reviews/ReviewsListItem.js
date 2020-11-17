@@ -57,7 +57,6 @@ const TextContent = styled.div`
   line-height: 24px;
   word-break: break-word;
   color: ${props => props.theme.gray};
-  font-family: ${props => props.theme.font}
 `
 
 const AllContentContainer = styled.div`

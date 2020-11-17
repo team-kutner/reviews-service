@@ -2,20 +2,15 @@ import React from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Header from './header/Header';
 import ReviewsSection from './reviews/ReviewsSection';
-import OurFont from './assets/images/Montserrat-Regular.ttf'
 
 
 const GlobalStyles = createGlobalStyle`
-  @font-face {
-    font-family: 'OurFont';
-    src: url(${OurFont});
-  }
   *, *:before, *:after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-size: 10;
-    font-family: 'OurFont';
+    font-family: 'Montserrat';
   }
 
 `;
@@ -33,7 +28,6 @@ const theme = {
   darkGray: '#000000', //read more
   gray: '#222', //name, content, rating name, rating #, show more
   lightGray: '#717171', //date,
-  font: 'OurFont'
 };
 
 const AppContainer = styled.div`

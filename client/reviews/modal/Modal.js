@@ -23,8 +23,8 @@ const Modal = (props) => {
       <ModalContainer onClick={(e) => e.stopPropagation()}>
           <StickyRatingsContainer>
             <HeadContainer>
-              <HoverHelper>
-                <CloseModal src={Xclose} onClick={() => setModalStatus(false)}/>
+              <HoverHelper onClick={() => setModalStatus(false)}>
+                <CloseModal src={Xclose}/>
               </HoverHelper>
             </HeadContainer>
             <Ratings ratings={ratings} totalReviews={totalReviews} modal={true}/>
@@ -43,7 +43,7 @@ const Modal = (props) => {
                 onBlur={() => setSearchFocus(false)}
               />
               {!!searchTerm && (
-              <ClearSearchBtn>
+              <ClearSearchBtn onClick={() => setSearchTerm('')}>
                 <ClearSearchIcon src={XclearSearch}/>
               </ClearSearchBtn>
               )}
