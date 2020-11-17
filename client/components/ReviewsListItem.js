@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ReviewsListItem = (props) => {
+  const {modal} = props
   let {author: {username, avatar}, content, createdAt} = props.review
   const date = new window.Date(createdAt)
   const month = date.toLocaleString('default', { month: 'long' })
@@ -11,7 +12,7 @@ const ReviewsListItem = (props) => {
 
 
   return (
-    <Container>
+    <Container modal={modal}>
       <AvatarContainer>
         <AvatarImage src={avatar}/>
         <UsernameAndDateContainer>
@@ -59,8 +60,10 @@ const TextContent = styled.div`
 
 
 const Container = styled.div`
-  width: 41.66%;
-  margin-right: 8.33%;
+  ${props => !props.modal && css`
+    width: 41.66%;
+    margin-right: 8.33%;
+  `}
   margin-bottom: 40px;
 `;
 

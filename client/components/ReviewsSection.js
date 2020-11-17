@@ -26,11 +26,17 @@ export default (props) => {
       <div>
         <OpenModal onClick={() => setModalStatus(true)}>Show all {reviewsWithComments.length} reviews</OpenModal>
       </div>
-      {modalStatus && <Modal ratings={ratings} totalReviews={reviewsWithComments.length} setModalStatus={setModalStatus}/>}
+      {modalStatus && (
+        <Modal
+          ratings={ratings}
+          totalReviews={reviewsWithComments.length}
+          setModalStatus={setModalStatus}
+          reviews={reviewsWithComments}
+        />
+      )}
     </SectionContainer>
   );
 };
-
 const OpenModal = styled.a`
   cursor: pointer;
   display: inline-block;

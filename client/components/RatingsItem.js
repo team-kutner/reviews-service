@@ -1,11 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 
 const RatingsItem = (props) => {
-  const {ratingName, ratingNumber} = props
+  const {ratingName, ratingNumber, modal} = props
   return (
-    <ItemContainer>
+    <ItemContainer modal={modal}>
       <ItemContainerParts>
         <RatingName>{ratingName}</RatingName>
         <BarRatingNumContainer>
@@ -13,7 +13,7 @@ const RatingsItem = (props) => {
             <BarUsedPercent used={ratingNumber * 10 * 2}></BarUsedPercent>
           </BarFullPercent>
 
-          <RatingNumber>{ratingNumber}</RatingNumber>
+          <RatingNumber>{ratingNumber.toFixed(1)}</RatingNumber>
         </BarRatingNumContainer>
       </ItemContainerParts>
     </ItemContainer>
@@ -23,11 +23,15 @@ const RatingsItem = (props) => {
 export default RatingsItem;
 
 const ItemContainer = styled.div`
-  width: 41.66%;
-  margin-right: 8.33%;
+  ${props => !props.modal && css`
+    width: 41.66%;
+    margin-right: 8.33%;
+  `}
+  white-space: nowrap;
+  margin-bottom: 16px;
+
   /* padding-right: 8px; */
   /* padding-left: 8px; */
-  margin-bottom: 16px;
   position: relative;
 `
 const RatingName = styled.div`
@@ -35,7 +39,7 @@ const RatingName = styled.div`
   font-weight: ${props => props.theme.smWeight};
   font-size: ${props => props.theme.mdFont};
   line-height: 20px
-`
+  `
 
 const ItemContainerParts = styled.div`
   display: flex;
