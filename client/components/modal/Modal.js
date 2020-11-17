@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styled, {keyframes} from 'styled-components';
 import Ratings from '../Ratings';
 import ReviewsList from '../ReviewsList';
-import svg from '../../assets/images/Qsearch.svg'
+import smallQicon from '../../assets/images/Qsearch.svg'
+import bigQicon from '../../assets/images/bigQsearch.svg'
+import XclearSearch from '../../assets/images/XclearSearch.svg'
+import Xclose from '../../assets/images/Xclose.svg'
 
 const Modal = (props) => {
   const {ratings, totalReviews, setModalStatus, reviews} = props
@@ -20,7 +23,9 @@ const Modal = (props) => {
       <ModalContainer onClick={(e) => e.stopPropagation()}>
           <StickyRatingsContainer>
             <HeadContainer>
-              <CloseModal src='https://i.imgur.com/2lWY5UV.png' onClick={() => setModalStatus(false)}/>
+              <HoverHelper>
+                <CloseModal src={Xclose} onClick={() => setModalStatus(false)}/>
+              </HoverHelper>
             </HeadContainer>
             <Ratings ratings={ratings} totalReviews={totalReviews} modal={true}/>
           </StickyRatingsContainer>
@@ -37,6 +42,11 @@ const Modal = (props) => {
                 onFocus={(e) => setSearchFocus(true)}
                 onBlur={() => setSearchFocus(false)}
               />
+              {!!searchTerm && (
+              <ClearSearchBtn>
+                <ClearSearchIcon src={XclearSearch}/>
+              </ClearSearchBtn>
+              )}
             </SearchContainer>
 
             <ReviewsList reviews={reviews} modal={true} searchTerm={searchTerm}/>
@@ -47,11 +57,44 @@ const Modal = (props) => {
   );
 }
 
+const HoverHelper = styled.div`
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+
+  &:hover {
+    background-color: rgb(247, 247, 247);
+    cursor: pointer;
+  }
+`
+const ClearSearchIcon = styled.img`
+  height: 12px;
+  width: 12px;
+`
+
+const ClearSearchBtn = styled.button`
+  border: none !important;
+  background-color: rgb(221, 221, 221) !important;
+  color: rgb(113, 113, 113) !important;
+  border-radius: 50% !important;
+  padding: 4px !important;
+  display: flex !important;
+  justify-content: center !important;
+  outline: none !important;
+  &:hover {
+    background-color: rgb(176, 176, 176) !important;
+    cursor: pointer;
+  }
+`
 const SearchIcon = styled.img`
   height:16px;
   width: 16px;
   margin-right: 8px;
-  content: url(${svg});
+  content: url(${props => !props.searchFocus ? smallQicon : bigQicon});
   /* filter: invert(1); */
 `
 const SearchInput = styled.input`
@@ -79,6 +122,8 @@ const StickyRatingsContainer = styled.div`
 `
 const ReviewsSearchContainer = styled.div`
   width: 60%;
+  /* max-width: 560.88px; */
+  /* margin-right: 20px; */
   margin-left: 42%;
 
 `
@@ -103,6 +148,8 @@ const HeadContainer = styled.div`
 `
 const CloseModal = styled.img`
   /* margin-left: 24px; */
+  width: 16px;
+  height: 16px;
 `
 const ContentFlex = styled.div`
   padding-left: 24px;
@@ -159,6 +206,6 @@ const ModalContainer = styled.div`
   animation-iteration-count: 1;
   animation-fill-mode: both;
   animation-name: ${TransitionFrames};
-  overflow: auto;
+  overflow-y: scroll;
 `
 export default Modal;

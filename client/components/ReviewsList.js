@@ -8,7 +8,7 @@ const ReviewsList = (props) => {
   const {reviews, modal=false, searchTerm = ''} = props
   return (
     <Container modal={modal}>
-      {reviews.filter((review) => review.content.includes(searchTerm)).map((review) => <ReviewsListItem review={review} key={review.id} modal={modal}/>)}
+      {reviews.filter((review) => review.content.toLowerCase().includes(searchTerm.toLowerCase())).map((review) => <ReviewsListItem review={review} key={review.id} modal={modal}/>)}
     </Container>
   );
 }
