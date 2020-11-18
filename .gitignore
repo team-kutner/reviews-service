@@ -24,6 +24,7 @@ coverage
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 public/bundle.js
+public/images/
 
 config/*
 !config/.gitkeep
