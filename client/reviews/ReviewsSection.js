@@ -11,7 +11,7 @@ export default (props) => {
 
   useEffect( () => {
     (async () => {
-      const {ratings, reviewsWithComments} = await fetch('http://localhost:3000/api/homes/7/reviews').then((res) => res.json());
+      const {ratings, reviewsWithComments} = await fetch('http://localhost:3000/api/homes/9/reviews').then((res) => res.json());
       setRatings(ratings);
       setReviewsWithComments(reviewsWithComments)
       console.log(ratings, reviewsWithComments)

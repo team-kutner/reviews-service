@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the ratings list and items 1`] = `
+<styled.div
+  modal={false}
+>
+  <styled.div>
+    <styled.img
+      modal={false}
+      src="https://i.imgur.com/U9jEbtL.png"
+    />
+    <styled.span
+      modal={false}
+    >
+      3.9
+       (
+      100
+       reviews)
+    </styled.span>
+  </styled.div>
+  <styled.div
+    modal={false}
+  >
+    <RatingsItem
+      key="Cleanliness"
+      modal={false}
+      ratingName="Cleanliness"
+      ratingNumber={3.8}
+    />
+    <RatingsItem
+      key="Accuracy"
+      modal={false}
+      ratingName="Accuracy"
+      ratingNumber={4.1}
+    />
+    <RatingsItem
+      key="Communication"
+      modal={false}
+      ratingName="Communication"
+      ratingNumber={4.1}
+    />
+    <RatingsItem
+      key="Check-in"
+      modal={false}
+      ratingName="Check-in"
+      ratingNumber={4}
+    />
+    <RatingsItem
+      key="Value"
+      modal={false}
+      ratingName="Value"
+      ratingNumber={3.9}
+    />
+    <RatingsItem
+      key="Location"
+      modal={false}
+      ratingName="Location"
+      ratingNumber={3.8}
+    />
+  </styled.div>
+</styled.div>
+`;
