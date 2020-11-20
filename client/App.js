@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Header from './header/Header';
 import ReviewsSection from './reviews/ReviewsSection';
 
 
@@ -47,7 +46,6 @@ export default () => {
     <>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <Header />
         <AppContainer>
           <HorizontalRule />
           <ReviewsSection />
