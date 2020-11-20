@@ -11,11 +11,14 @@ const determineIfShouldComment = require('./determineIfShouldComment');
 const randomInclusive = require('./randomInclusive');
 
 const generateHomeOwner = () => {
+    const genderId = randomInclusive(1, 2)
+    const genderWord = genderId === 1 ? 'men' : 'women'
+    const imageId = randomInclusive(1, 50)
 
   return new User({
     _id: mongoose.Types.ObjectId(),
     username: faker.name.firstName(),
-    avatar: faker.image.avatar()
+    avatar: `https://randomuser.me/api/portraits/${genderWord}/${imageId}.jpg`
   });
 };
 
@@ -24,10 +27,14 @@ const generateUsersAndReviews = (home) => {
   const reviews = [];
   const users = [];
   for (let i = 1; i <= 100; i++) {
+    const genderId = randomInclusive(1, 2)
+    const genderWord = genderId === 1 ? 'women' : 'men'
+    const imageId = randomInclusive(1, 50)
+
     const user = {
       _id: mongoose.Types.ObjectId(),
       username: faker.name.firstName(),
-      avatar: faker.image.avatar()
+      avatar: `https://randomuser.me/api/portraits/${genderWord}/${imageId}.jpg`
     };
 
     const randomMonth = randomInclusive(0, 11);
