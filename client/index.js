@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Header from './header/Header'
+// ReactDOM.render(<App />, document.getElementById('app'));
 
-ReactDOM.render(<App />, document.getElementById('app'));
-
-
-//for deployment
-// window.App = App;
-// window.React = React;
-// window.ReactDOM = ReactDOM;
+window.Header = Header;
+window.ReviewsApp = App;
+window.React = React;
+window.ReactDOM = ReactDOM;

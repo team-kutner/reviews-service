@@ -6,11 +6,12 @@ const Comment = require('../db/comment');
 const User = require('../db/user');
 const initSeed = require('../db/initSeed');
 const aggregateReviewStars = require('./utils/aggregateReviewStars');
-
+const path = require('path')
 
 
 const app = express();
 app.use(cors());
+app.use(express.static(path.resolve('public')))
 
 //refactor this later so the seed script doesn't always delete what's in there
 //have it check to make sure the home being searched for has reviews;

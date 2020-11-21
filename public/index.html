@@ -9,13 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="header"></div>
   <div id="app"></div>
   <script src="bundle.js"></script>
 
 
-  <!-- <script type="application/javascript">
+  <script type="application/javascript">
     console.log('hi');
-    console.log(window.App, window.React, window.ReactDOM);
-  </script> -->
+    console.log(window.ReviewsApp, window.React, window.ReactDOM);
+    const {ReviewsApp, Header, React, ReactDOM} = window;
+    ReactDOM.render(React.createElement(Header), document.getElementById('header'))
+
+    ReactDOM.render(React.createElement(ReviewsApp), document.getElementById('app'))
+  </script>
 </body>
 </html>

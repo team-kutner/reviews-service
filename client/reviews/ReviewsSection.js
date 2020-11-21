@@ -11,7 +11,11 @@ export default (props) => {
 
   useEffect( () => {
     (async () => {
-      const {ratings, reviewsWithComments} = await fetch('http://localhost:3000/api/homes/9/reviews').then((res) => res.json());
+      const urlParts = window.location.href.split('/')
+      const homeId = urlParts[urlParts.length - 1] || '5'
+      
+      const {ratings, reviewsWithComments} = await fetch(`/api/homes/${homeId}/reviews`).then((res) => res.json());
+
       setRatings(ratings);
       setReviewsWithComments(reviewsWithComments)
       console.log(ratings, reviewsWithComments)
