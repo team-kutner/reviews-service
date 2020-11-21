@@ -28,4 +28,5 @@ public/images/
 
 config/*
 !config/.gitkeep
+!config/dev.example.env
 possibleTests.js

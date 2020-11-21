@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider , createGlobalStyle} from 'styled-components';
 import ReviewsSection from './reviews/ReviewsSection';
 
 
@@ -8,7 +8,6 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 10;
     font-family: 'Montserrat';
   }
 `;
@@ -44,6 +43,7 @@ export default () => {
   return (
     <>
       <GlobalStyles />
+
       <ThemeProvider theme={theme}>
         <AppContainer>
           <HorizontalRule />
