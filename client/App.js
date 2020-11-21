@@ -1,17 +1,17 @@
 import React from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import ReviewsSection from './reviews/ReviewsSection';
 
 
-const GlobalStyles = createGlobalStyle`
-  *, *:before, *:after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: 10;
-    font-family: 'Montserrat';
-  }
-`;
+// const GlobalStyles = createGlobalStyle`
+//   *, *:before, *:after {
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: 0;
+//     font-size: 10;
+//     font-family: 'Montserrat';
+//   }
+// `;
 
 
 const theme = {
@@ -43,7 +43,8 @@ const HorizontalRule = styled.div`
 export default () => {
   return (
     <>
-      <GlobalStyles />
+      {/* <GlobalStyles /> */}
+
       <ThemeProvider theme={theme}>
         <AppContainer>
           <HorizontalRule />
