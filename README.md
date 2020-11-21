@@ -10,27 +10,19 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
 
-## Usage
-
-This project relies on a MongoDB database and Node.js.
-
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
+This project relies on a MongoDB database and Node.js.
 
 ## Development
 
 ### Installing Dependencies
 
 From within the root directory:
-Creates files `dev.env` and `test.env` under `/config`.
+Creates files `dev.env` and `test.env` under `/config`. An example is provided.
 Fill in the env variable `MONGODB_URL` in each, making sure to supply an appropriate MongoDB uri.
 
 ```sh
