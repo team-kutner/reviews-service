@@ -13,6 +13,7 @@ export default (props) => {
     (async () => {
       const urlParts = window.location.href.split('/')
       const homeId = urlParts[urlParts.length - 1] || '5'
+      
       const {ratings, reviewsWithComments} = await fetch(`/api/homes/${homeId}/reviews`).then((res) => res.json());
 
       setRatings(ratings);

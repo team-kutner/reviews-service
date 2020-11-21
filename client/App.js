@@ -11,7 +11,6 @@ const GlobalStyles = createGlobalStyle`
     font-size: 10;
     font-family: 'Montserrat';
   }
-
 `;
 
 
