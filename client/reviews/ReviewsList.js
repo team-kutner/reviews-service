@@ -1,5 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+// import React from 'react';
+const {React} = window
+
+// import styled from 'styled-components';
+const {styled} = window
 import ReviewsListItem from './ReviewsListItem';
 
 

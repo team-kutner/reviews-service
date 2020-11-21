@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+// import React, { useEffect, useState } from 'react';
+// import styled from 'styled-components';
+const {styled} = window
+const {React} = window
+const {useEffect, useState} = React
+
 import Modal from './modal/Modal';
 import Ratings from './Ratings';
 import ReviewsList from './ReviewsList';

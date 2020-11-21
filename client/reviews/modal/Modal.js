@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styled, {keyframes} from 'styled-components';
+// import React, { useEffect, useState } from 'react';
+const {React} = window
+const {useEffect, useState} = React
+// import styled, {keyframes} from 'styled-components';
+const {styled} = window
+const {keyframes} = styled
+
 import Ratings from '../Ratings';
 import ReviewsList from '../ReviewsList';
 import smallQicon from '../../assets/images/Qsearch.svg'

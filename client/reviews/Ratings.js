@@ -1,7 +1,10 @@
-import React from 'react';
-import styled, {css} from 'styled-components'
+// import React from 'react';
+const {React} = window;
+// import styled, {css} from 'styled-components'
 import calcOverallRating from '../utils/calcOverallRating';
 import RatingsItem from './RatingsItem';
+const {styled} = window
+const {css} = styled
 
 export default (props) => {
   const {ratings, totalReviews, modal=false } = props;

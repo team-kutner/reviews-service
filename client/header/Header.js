@@ -1,5 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+// import React from 'react';
+const {React} = window;
+// import styled from 'styled-components';
+const {styled} = window
+
 import logo from '../assets/images/airbnbLogo.png'
 import profileImg from '../assets/images/profileLogo.png'
 import searchImg from '../assets/images/searchImg.png'
