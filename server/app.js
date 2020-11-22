@@ -17,6 +17,9 @@ app.use(express.static(path.resolve('public')))
 //have it check to make sure the home being searched for has reviews;
 //  if it does have reviews, return and format those.
 //  if it doesn't, then go ahead and generate new ones and format and return those.
+app.get('/homes/:id', (req, res) => {
+  res.sendFile(path.resolve('public', 'index.html'))
+})
 app.get('/api/homes/:id/reviews', async (req, res) => {
   const {id} = req.params
   console.log('homeId ', id)
