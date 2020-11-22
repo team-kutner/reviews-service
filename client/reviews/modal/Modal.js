@@ -188,6 +188,7 @@ const TransitionFrames = keyframes`
 const ModalBG = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   position: fixed;
+  z-index: 1000;
   width: 100%;
   height: 100vh;
   top: 0;
