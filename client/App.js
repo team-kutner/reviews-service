@@ -1,5 +1,7 @@
-import React from 'react';
-import styled, { ThemeProvider , createGlobalStyle} from 'styled-components';
+// import React from 'react';
+const {React} = window
+const {styled} = global
+const {createGlobalStyle, ThemeProvider} = styled;
 import ReviewsSection from './reviews/ReviewsSection';
 
 

@@ -1,6 +1,8 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-
+// import React from 'react';
+const {React} = window
+// import styled, { css } from 'styled-components';
+const {styled} = window
+const {css} = styled
 
 const RatingsItem = (props) => {
   const {ratingName, ratingNumber, modal} = props

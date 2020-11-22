@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+// import React, { useState } from 'react';
+const {React} = window
+const {useState} = React
+// import styled, { css } from 'styled-components';
+const {styled} = window
+const {css} = styled
+
 
 const ReviewsListItem = (props) => {
   const {modal, isComment=false} = props
