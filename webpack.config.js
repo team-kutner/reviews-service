@@ -22,6 +22,8 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: 'api/reviews/images/[hash]-[name].[ext]',
+              //the path that will show on the actual webpage after being transpiled, normally it will be a relative path.
+              publicPath: '/'
             },
           },
         ],
