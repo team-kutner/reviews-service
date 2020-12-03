@@ -35,18 +35,18 @@ This project relies on a MongoDB database and Node.js.
 
 CRUD API
 The below URL's should be prefixed with /api/homes/:id
-|              Action               |Method|         URL          |
-| --------------------------------- | ---- | -------------------- |
-|Add a user to the database         |POST  |/api/homes/users      |
-|Add a review to the database       |POST  |/api/homes/reviews    |
-|Add a comment to the database      |POST  |/api/homes/comments   |
-|Pulls reviews for a given home     |GET   |/api/homes/:id/reviews|
-|Alters a user in database          |PUT   |/api/homes/users      |
-|Alters a review in database        |PUT   |/api/homes/reviews    |
-|Alters a comment in the database   |PUT   |/api/homes/comments   |
-|Deletes a user from the database   |DELETE|/api/homes/users      |
-|Deletes a review from the database |DELETE|/api/homes/reviews    |
-|Deletes a comment from the database|DELETE|/api/homes/comments   |
+|              Action               |Method|          URL          |
+| --------------------------------- | ---- | --------------------- |
+|Add a user to the database         |POST  |/api/homes/users       |
+|Add a review to the database       |POST  |/api/homes/reviews     |
+|Add a comment to the database      |POST  |/api/homes/comments    |
+|Pulls reviews for a given home     |GET   |/api/homes/:id/reviews |
+|Alters a user in database          |PUT   |/api/homes/:id/users   |
+|Alters a review in database        |PUT   |/api/homes/:id/reviews |
+|Alters a comment in the database   |PUT   |/api/homes/:id/comments|
+|Deletes a user from the database   |DELETE|/api/homes/:id/users   |
+|Deletes a review from the database |DELETE|/api/homes/:id/reviews |
+|Deletes a comment from the database|DELETE|/api/homes/:id/comments|
 
 1. __CREATE (POST)__
   Creating a review requires a user ID
