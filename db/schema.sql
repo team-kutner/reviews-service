@@ -1,4 +1,3 @@
-DROP DATABASE IF EXISTS reviewsandcomments;
 CREATE DATABASE reviewsandcomments;
 \c reviewsandcomments;
 
@@ -32,6 +31,5 @@ CREATE DATABASE reviewsandcomments;
 
 CREATE TABLE homes (
   id SERIAL NOT NULL,
-  homeID INT NOT NULL,
-  reviews JSON NOT NULL
+  reviews TEXT[] NOT NULL
 );

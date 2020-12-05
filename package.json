@@ -20,7 +20,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.1.10",
-    "mongoose": "^5.3.16"
+    "mongoose": "^5.3.16",
+    "pg": "^8.5.1",
+    "save": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
