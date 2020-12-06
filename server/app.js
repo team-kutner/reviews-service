@@ -32,7 +32,9 @@ app.get('/api/homes/:id/reviews', async (req, res) => {
   try {
     let home = await postgres.getHomes(id);
     console.log(home);
+    res.send(home).status(200);
   } catch {
+    res.sendStatus(404);
     console.log('oof');
   }
   // try {

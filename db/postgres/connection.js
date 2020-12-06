@@ -14,7 +14,7 @@ const pool = new pg.Pool(connection);
 let getHomes = async (id) => {
   let res = await client.query(`SELECT * FROM homes WHERE id = ($1)`, [id]);
   client.end();
-  console.log(JSON.parse(`[${res.rows[0].reviews[0]}]`));
+  return JSON.parse(`[${res.rows[0].reviews[0]}]`);
 }
 
 let addHome = async (req, callback) => {
