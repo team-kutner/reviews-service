@@ -6,6 +6,7 @@ require('../db/mongoose');
 const Review = require('../db/review');
 const Comment = require('../db/comment');
 const User = require('../db/user');
+const postgres = require('../db/postgres/connection.js')
 const initSeed = require('../db/initSeed');
 const aggregateReviewStars = require('./utils/aggregateReviewStars');
 const path = require('path')
@@ -28,45 +29,63 @@ app.get('/homes/:id', (req, res) => {
 app.get('/api/homes/:id/reviews', async (req, res) => {
   const { id } = req.params
   console.log('homeId ', id)
-
   try {
-    let reviews;
-
-    reviews = await Review.find({ home: id })
-    if (!reviews.length) {
-      const { homeOwner, users, reviews: seedReviews, comments } = await initSeed(id, false);
-      reviews = seedReviews
-    }
-
-    const ratings = aggregateReviewStars(reviews);
-
-    for (const review of reviews) {
-      await review.populate('comments').execPopulate()
-      // reviewsWithComments.push(await review.populate('comments').execPopulate());
-      await review.populate('author').execPopulate()
-      if (!review.comments.length) continue
-      review.comments[0].populate('author').execPopulate()
-    }
-
-    reviews.sort((a, b) => new Date(a.createdAt).valueOf() > new Date(b.createdAt).valueOf() ? -1 : 1);
-
-    res.send({ ratings, reviewsWithComments: reviews });
-  } catch (e) {
-    console.log(e, 'errrrr');
+    let home = await postgres.getHomes(id);
+    res.send(home).status(200);
+  } catch {
+    res.sendStatus(404);
+    console.log('oof');
   }
+  // try {
+  //   let reviews;
+
+  //   reviews = await Review.find({ home: id })
+
+  //   const ratings = aggregateReviewStars(reviews);
+
+  //   for (const review of reviews) {
+  //     await review.populate('comments').execPopulate()
+  //     // reviewsWithComments.push(await review.populate('comments').execPopulate());
+  //     await review.populate('author').execPopulate()
+  //     if (!review.comments.length) continue
+  //     review.comments[0].populate('author').execPopulate()
+  //   }
+
+  //   reviews.sort((a, b) => new Date(a.createdAt).valueOf() > new Date(b.createdAt).valueOf() ? -1 : 1);
+
+  //   res.send({ ratings, reviewsWithComments: reviews });
+  // } catch (e) {
+  //   console.log(e, 'errrrr');
+  // }
 
 });
 
+app.post('/api/homes/reviews', (req, res) => {
+  console.log(req.body);
+  try {
+    let post = postgres.addHome(req.body, (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log('success');
+      }
+    });
+    console.log(post);
+  } catch {
+    console.log('ugh');
+  }
+})
+
 // posts a user to the database
 app.post('/api/homes/users', async (req, res) => {
-  let user = await seedTools.generateHomeOwner(req.body.username, req.body.avatar);
-  // console.log(user);
-  user.save((err, data) => {
-    if (err) { return next(err) };
-    console.log('success');
-    res.status(201);
-    res.end();
-  })
+  // let user = await seedTools.generateHomeOwner(req.body.username, req.body.avatar);
+  // // console.log(user);
+  // user.save((err, data) => {
+  //   if (err) { return next(err) };
+  //   console.log('success');
+  //   res.status(201);
+  //   res.end();
+  // })
 });
 
 // posts a review to the database
