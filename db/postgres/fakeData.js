@@ -40,11 +40,11 @@ function generateReviews() {
     reviews.push(JSON.stringify(review))
     i -= 1;
   }
-  let fakeData = [];
-  reviews.forEach((review) => {
-    fakeData.push(JSON.stringify(review));
-  })
-  return fakeData;
+  // let fakeData = [];
+  // reviews.forEach((review) => {
+  //   fakeData.push(JSON.stringify(review));
+  // })
+  return reviews;
 }
 
 let commentArray = generateComments();

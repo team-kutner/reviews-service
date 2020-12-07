@@ -13,8 +13,8 @@ function writeTenMillionHomes(writer, encoding, callback) {
     let ok = true;
     do {
       i -= 1;
-      let reviews = fakeReviews.generateReviews();
-      let data = `${reviews}\n`
+      let data = `${[fakeReviews.generateReviews()]}\n`;
+      // let data = JSON.stringify(reviews);
       if (i === 0) {
         let time = new Date();
         var diffMs = (time - start);
