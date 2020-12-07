@@ -13,7 +13,6 @@ const pool = new pg.Pool(connection);
 
 let getHomes = async (id) => {
   let res = await client.query(`SELECT * FROM homes WHERE id = ($1);`, [id]);
-  client.end();
   return res.rows[0];
 }
 
@@ -27,7 +26,6 @@ let addHome = async (req, callback) => {
   console.log(reviews);
   let res = await client.query(`INSERT INTO homes(reviews) VALUES('${reviews}');`, (err, data) => {
     callback(err, data);
-    client.end();
   });
 }
 

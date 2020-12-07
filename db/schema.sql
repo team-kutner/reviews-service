@@ -31,5 +31,5 @@ CREATE DATABASE reviewsandcomments;
 
 CREATE TABLE homes (
   id SERIAL NOT NULL,
-  reviews json NOT NULL
+  reviews VARCHAR(65535) NOT NULL
 );

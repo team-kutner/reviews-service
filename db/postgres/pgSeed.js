@@ -2,18 +2,18 @@ const faker = require('faker');
 const fs = require('fs');
 const fakeReviews = require('./fakeData.js');
 
-const writeReviews = fs.createWriteStream('homes.csv');
+const writeReviews = fs.createWriteStream('db/postgres/homes.csv');
 // writeReviews.write('reviews\n', 'utf8');
 
 function writeTenMillionHomes(writer, encoding, callback) {
-  let i = 100;
+  let i = 10000000;
   let start = new Date();
   console.log('started at: ', start);
   function write() {
     let ok = true;
     do {
       i -= 1;
-      let data = `${[fakeReviews.generateReviews()]}\n`;
+      let data = `${fakeReviews.generateReviews()}\n`;
       // let data = JSON.stringify(reviews);
       if (i === 0) {
         let time = new Date();

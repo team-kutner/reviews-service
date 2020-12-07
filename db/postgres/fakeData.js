@@ -37,14 +37,14 @@ function generateReviews() {
       },
       "comments": generateComments()
     }
-    reviews.push(JSON.stringify(review))
+    reviews.push(review);
     i -= 1;
   }
   // let fakeData = [];
   // reviews.forEach((review) => {
   //   fakeData.push(JSON.stringify(review));
   // })
-  return reviews;
+  return JSON.stringify(reviews);
 }
 
 let commentArray = generateComments();
