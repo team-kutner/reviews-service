@@ -1,0 +1,2 @@
+\c reviewsandcomments;
+\COPY reviews(homeid, content, cleanliness, accuracy, communication, location, checkIn, value, author, comments, createdAt) FROM '/Users/jeremyengland/Desktop/HRR49/reviews-service/db/postgres/reviews.csv' CSV HEADER DELIMITER '|';
