@@ -60,7 +60,24 @@ app.get('/api/homes/:id/reviews', async (req, res) => {
 
 });
 
+// add a review and comments to the database
 app.post('/api/homes/reviews', (req, res) => {
+  try {
+    let post = postgres.addReview(req.body, (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log('success');
+      }
+    });
+    console.log(post);
+  } catch(err) {
+    console.log(err)
+  }
+})
+
+// add a home to the database
+app.post('/api/homes', (req, res) => {
   console.log(req.body);
   try {
     let post = postgres.addHome(req.body, (err, data) => {
@@ -76,129 +93,57 @@ app.post('/api/homes/reviews', (req, res) => {
   }
 })
 
-// posts a user to the database
-app.post('/api/homes/users', async (req, res) => {
-  // let user = await seedTools.generateHomeOwner(req.body.username, req.body.avatar);
-  // // console.log(user);
-  // user.save((err, data) => {
-  //   if (err) { return next(err) };
-  //   console.log('success');
-  //   res.status(201);
-  //   res.end();
-  // })
-});
-
-// posts a review to the database
-app.post('/api/homes/reviews', async (req, res) => {
-  let review = await seedTools.generateReview(req.body);
-  review.save((err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(201);
-    res.end();
-  })
-});
-
-// posts a comment to the database
-app.post('/api/homes/comments', async (req, res) => {
-  console.log(req.body);
-  let comment = await seedTools.generateComment(req.body);
-  comment.save((err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(201);
-    res.end();
-  })
-});
-
-// updates a user in the database
-app.put('/api/homes/:id/users', (req, res) => {
+// updates content of review in the database
+app.put('/api/homes/:homeid/reviews/:id', (req, res) => {
   const { id } = req.params;
-  console.log(req.body);
-  User.findByIdAndUpdate(id, req.body, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(201);
-    res.end();
-  });
+  const { homeid } = req.params;
+  try {
+    let post = postgres.updateReview(id, req.body, (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log('success');
+      }
+    });
+    console.log(post);
+  } catch {
+    console.log('ugh');
+  }
 });
 
-// updates a review in the database
-app.put('/api/homes/:id/reviews', (req, res) => {
+// deletes a review and comments from the database
+app.delete('/api/homes/:homeid/reviews/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(req.body);
-  Review.findByIdAndUpdate(id, req.body, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(201);
-    res.end();
-  });
+  const { homeid } = req.params;
+  try {
+    let post = postgres.deleteReview(id, req.body, (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log('success');
+      }
+    });
+    console.log(post);
+  } catch {
+    console.log('ugh');
+  }
 });
 
-// updates a comment in the database
-app.put('/api/homes/:id/comments', async (req, res) => {
-  const { id } = req.params;
-  console.log(req.body);
-  Comment.findByIdAndUpdate(id, req.body, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(201);
-    res.end();
-  });
-});
-
-// deletes a comment from the database
-app.delete('/api/homes/:id/comments', async (req, res) => {
-  const { id } = req.params;
-  console.log(req.body);
-  Comment.remove({_id: id}, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(200);
-    res.end();
-  });
-});
-
-// deletes a review and all comments
-app.delete('/api/homes/:id/reviews', async (req, res) => {
-  const { id } = req.params;
-  console.log(req.body);
-  Comment.remove({review: id}, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(200);
-    res.end();
-  });
-  Review.remove({_id: id}, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(200);
-    res.end();
-  });
-});
-
-// deletes a user, all reviews, and all comments
-app.delete('/api/homes/:id/users', async (req, res) => {
-  const { id } = req.params;
-  console.log(req.body);
-  Comment.remove({author: id}, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(200);
-    res.end();
-  });
-  Review.remove({author: id}, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(200);
-    res.end();
-  });
-  User.remove({_id: id}, (err, data) => {
-    if (err) { return next(err); };
-    console.log('success');
-    res.status(200);
-    res.end();
-  });
+// deletes a home and reviews/comments from the database
+app.delete('/api/homes/:homeid', async (req, res) => {
+  const { homeid } = req.params;
+  try {
+    let post = postgres.deleteHome(homeid, req.body, (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log('success');
+      }
+    });
+    console.log(post);
+  } catch {
+    console.log('ugh');
+  }
 });
 
 app.get('/hello', (req, res) => res.send('hello world'));

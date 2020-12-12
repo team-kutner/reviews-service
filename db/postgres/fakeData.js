@@ -19,36 +19,28 @@ function generateComments() {
 }
 
 function generateReviews() {
-  let i = 3;
-  let reviews = [];
-  while (i > 0) {
-    let review = {
-      "content": faker.lorem.sentences(),
-      "cleanliness": getChanceRating(),
-      "accuracy": getChanceRating(),
-      "location": getChanceRating(),
-      "check-in": getChanceRating(),
-      "value": getChanceRating(),
-      "createdAt": new Date(2020, randomInclusive(0, 11)),
-      "__v": 0,
-      "author": {
-        "username": faker.internet.userName(),
-        "avatar": faker.image.avatar()
-      },
-      "comments": generateComments()
-    }
-    reviews.push(review);
-    i -= 1;
+  // let i = Math.floor(Math.random() * Math.floor(5));
+  let review = {
+    "homeid": Math.floor(Math.random() * Math.floor(10000000)),
+    "content": faker.lorem.sentences(),
+    "cleanliness": getChanceRating(),
+    "accuracy": getChanceRating(),
+    "communication": getChanceRating(),
+    "location": getChanceRating(),
+    "checkIn": getChanceRating(),
+    "value": getChanceRating(),
+    "author": {
+      "username": faker.internet.userName(),
+      "avatar": faker.image.avatar()
+    },
+    "comments": generateComments(),
+    "createdAt": new Date(2020, randomInclusive(0, 11))
   }
-  // let fakeData = [];
-  // reviews.forEach((review) => {
-  //   fakeData.push(JSON.stringify(review));
-  // })
-  return JSON.stringify(reviews);
+  review.author = JSON.stringify(review.author);
+  review.comments = JSON.stringify(review.comments);
+  review.createdAt = JSON.stringify(review.createdAt);
+  return review;
 }
-
-let commentArray = generateComments();
-console.log(commentArray);
 
 module.exports = {
   generateReviews

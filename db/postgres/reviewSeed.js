@@ -2,18 +2,19 @@ const faker = require('faker');
 const fs = require('fs');
 const fakeReviews = require('./fakeData.js');
 
-const writeReviews = fs.createWriteStream('db/postgres/homes.csv');
-// writeReviews.write('reviews\n', 'utf8');
+const writeReviews = fs.createWriteStream('db/postgres/reviews.csv');
+writeReviews.write('homeid|content|cleanliness|accuracy|communication|location|checkIn|value|author|comments|createdAt\n', 'utf8');
 
-function writeTenMillionHomes(writer, encoding, callback) {
-  let i = 10000000;
+function writeTenMillionReviews(writer, encoding, callback) {
+  let i = 100;
   let start = new Date();
   console.log('started at: ', start);
   function write() {
     let ok = true;
     do {
       i -= 1;
-      let data = `${fakeReviews.generateReviews()}\n`;
+      let review = fakeReviews.generateReviews();
+      let data = `${review.homeid}|${review.content}|${review.cleanliness}|${review.accuracy}|${review.communication}|${review.location}|${review.checkIn}|${review.value}|${review.author}|${review.comments}|${review.createdAt}\n`;
       // let data = JSON.stringify(reviews);
       if (i === 0) {
         let time = new Date();
@@ -38,6 +39,6 @@ function writeTenMillionHomes(writer, encoding, callback) {
   write()
 }
 
-writeTenMillionHomes(writeReviews, 'utf-8', () => {
+writeTenMillionReviews(writeReviews, 'utf-8', () => {
   writeReviews.end();
 });
