@@ -29,7 +29,7 @@ app.get('/homes/:id', (req, res) => {
 
 app.get('/api/homes/:id/reviews', async (req, res) => {
   const { id } = req.params
-  console.log('homeId ', id)
+  // console.log('homeId ', id)
   try {
     let home = await postgres.getReviews(id);
     res.send(home).status(200);
@@ -72,7 +72,7 @@ app.post('/api/homes/reviews', (req, res) => {
         res.end();
       }
     });
-    console.log(post);
+    // console.log(post);
   } catch(err) {
     console.log(err);
     res.status(404);
