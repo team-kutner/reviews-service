@@ -1,0 +1,25 @@
+config:
+  target: "http://localhost:3010"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+scenarios:
+  - flow:
+    - post:
+        url: "/api/homes/reviews"
+        json:
+          homeid: 5
+          content: "STRESS TEST"
+          cleanliness: 1
+          accuracy: 1
+          communication: 1
+          location: 1
+          checkin: 1
+          value: 1
+          author: "{username:Weldon99,avatar:https://s3.amazonaws.com/uifaces/faces/twitter/prrstn/128.jpg}"
+          comments: "[{content:Dolorem ut reiciendis totam cum unde et. Ea eligendi beatae delectus velit. Libero voluptas quia quaerat voluptatum. Et et enim dolore a. Aliquam ut aut cumque eaque quis iusto et similique quo. Ut nulla sequi laborum est et quo quam.,author:{username:Kaleigh9,avatar:https://s3.amazonaws.com/uifaces/faces/twitter/martinansty/128.jpg}},{content:Non consequatur consequatur. Voluptatum laboriosam sint neque cum. Quis in culpa sed recusandae commodi maiores voluptas. Placeat veniam aliquam praesentium recusandae et consequuntur ea quam. Voluptate ut excepturi temporibus sunt. Illum quis voluptatum repudiandae.,author:{username:Charlie81,avatar:https://s3.amazonaws.com/uifaces/faces/twitter/poormini/128.jpg}}]"
+          createdat: "2020-05-01T07:00:00.000Z"
+    - loop:
+      - get:
+          url: "/api/homes/3/reviews"
+      count: 100

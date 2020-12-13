@@ -6,7 +6,7 @@ const writeReviews = fs.createWriteStream('db/postgres/homes.csv');
 writeReviews.write('homeid\n', 'utf8');
 
 function writeTenMillionHomes(writer, encoding, callback) {
-  let i = 30000000;
+  let i = 10000000;
   let homeID = 0;
   let start = new Date();
   console.log('started at: ', start);

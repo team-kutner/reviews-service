@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -30,7 +31,7 @@ app.get('/api/homes/:id/reviews', async (req, res) => {
   const { id } = req.params
   console.log('homeId ', id)
   try {
-    let home = await postgres.getHomes(id);
+    let home = await postgres.getReviews(id);
     res.send(home).status(200);
   } catch {
     res.sendStatus(404);
@@ -67,12 +68,15 @@ app.post('/api/homes/reviews', (req, res) => {
       if (err) {
         throw err;
       } else {
-        console.log('success');
+        res.status(200);
+        res.end();
       }
     });
     console.log(post);
   } catch(err) {
-    console.log(err)
+    console.log(err);
+    res.status(404);
+    res.end();
   }
 })
 
