@@ -13,7 +13,8 @@
     "dev:server": "env-cmd -f ./config/dev.env nodemon server/index.js",
     "start": "env-cmd -f ./config/dev.env node server/index.js",
     "seed": "env-cmd -f ./config/dev.env node db/initSeed.js --init_seed",
-    "test": "env-cmd -f ./config/test.env jest --watch --runInBand"
+    "test": "env-cmd -f ./config/test.env jest --watch --runInBand",
+    "stress-test": "artillery run stressTest.yaml"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -21,6 +22,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.16",
+    "newrelic": "^7.0.2",
     "pg": "^8.5.1",
     "save": "^2.4.0"
   },

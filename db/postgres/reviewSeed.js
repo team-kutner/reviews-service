@@ -6,15 +6,22 @@ const writeReviews = fs.createWriteStream('db/postgres/reviews.csv');
 writeReviews.write('homeid|content|cleanliness|accuracy|communication|location|checkIn|value|author|comments|createdAt\n', 'utf8');
 
 function writeTenMillionReviews(writer, encoding, callback) {
-  let i = 100;
+  let i = 50000000;
+  let homeid = 1;
+  let reviewCount = 0;
   let start = new Date();
   console.log('started at: ', start);
   function write() {
     let ok = true;
     do {
+      if (reviewCount > 4) {
+        reviewCount = 0;
+        homeid += 1;
+      }
+      reviewCount += 1;
       i -= 1;
       let review = fakeReviews.generateReviews();
-      let data = `${review.homeid}|${review.content}|${review.cleanliness}|${review.accuracy}|${review.communication}|${review.location}|${review.checkIn}|${review.value}|${review.author}|${review.comments}|${review.createdAt}\n`;
+      let data = `${homeid}|${review.content}|${review.cleanliness}|${review.accuracy}|${review.communication}|${review.location}|${review.checkIn}|${review.value}|${review.author}|${review.comments}|${review.createdAt}\n`;
       // let data = JSON.stringify(reviews);
       if (i === 0) {
         let time = new Date();
