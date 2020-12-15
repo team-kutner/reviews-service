@@ -9,7 +9,7 @@ CREATE TABLE homes (
 CREATE TABLE reviews (
 	id SERIAL PRIMARY KEY,
   homeid INT NOT NULL,
-	content VARCHAR(5000) NOT NULL,
+	content VARCHAR(2000) NOT NULL,
 	cleanliness INT NOT NULL,
   accuracy INT NOT NULL,
   communication INT NOT NULL,

@@ -6,7 +6,7 @@ const writeReviews = fs.createWriteStream('db/postgres/reviews.csv');
 writeReviews.write('homeid|content|cleanliness|accuracy|communication|location|checkIn|value|author|comments|createdAt\n', 'utf8');
 
 function writeTenMillionReviews(writer, encoding, callback) {
-  let i = 50000000;
+  let i = 30000000;
   let homeid = 1;
   let reviewCount = 0;
   let start = new Date();
@@ -14,7 +14,7 @@ function writeTenMillionReviews(writer, encoding, callback) {
   function write() {
     let ok = true;
     do {
-      if (reviewCount > 4) {
+      if (reviewCount > 2) {
         reviewCount = 0;
         homeid += 1;
       }
