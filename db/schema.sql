@@ -7,16 +7,16 @@ CREATE TABLE homes (
 );
 
 CREATE TABLE reviews (
-	id SERIAL PRIMARY KEY,
+	id SERIAL,
   homeid INT NOT NULL,
-	content VARCHAR(2000) NOT NULL,
+	content VARCHAR(1500) NOT NULL,
 	cleanliness INT NOT NULL,
   accuracy INT NOT NULL,
   communication INT NOT NULL,
   location INT NOT NULL,
   checkIn INT NOT NULL,
   value INT NOT NULL,
-	author TEXT NOT NULL,
+	author VARCHAR(10000),
   comments TEXT NOT NULL,
   createdAt DATE NOT NULL,
   CONSTRAINT fk_home
