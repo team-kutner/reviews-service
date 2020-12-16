@@ -27,8 +27,8 @@ app.get('/homes/:id', (req, res) => {
   res.sendFile(path.resolve('public', 'index.html'))
 })
 
-app.get('/loaderio-da7946e2a69313aab2d42525b10122a0', (req, res) => {
-  res.status(200).send('loaderio-da7946e2a69313aab2d42525b10122a0');
+app.get('/loaderio-eef2b301622a769ec9ade5da37512fe7', (req, res) => {
+  res.status(200).send('loaderio-eef2b301622a769ec9ade5da37512fe7');
 });
 
 app.get('/api/homes/:id/reviews', async (req, res) => {
