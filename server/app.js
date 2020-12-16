@@ -27,6 +27,10 @@ app.get('/homes/:id', (req, res) => {
   res.sendFile(path.resolve('public', 'index.html'))
 })
 
+app.get('/loaderio-da7946e2a69313aab2d42525b10122a0', (req, res) => {
+  res.status(200).send('loaderio-da7946e2a69313aab2d42525b10122a0');
+});
+
 app.get('/api/homes/:id/reviews', async (req, res) => {
   const { id } = req.params
   // console.log('homeId ', id)
