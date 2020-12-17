@@ -1,7 +1,10 @@
 var pg = require('pg');
+const redis = require('../redis/redisConfig.js');
+
 var connection = {
-  user: 'jeremyengland',
-  host: 'localhost',
+  user: process.env.PG_USER,
+  pasword: process.env.PG_PASSWORD,
+  host: process.env.PG_HOST,
   port: 5432,
   database: 'reviewsandcomments'
 }
@@ -13,8 +16,17 @@ const pool = new pg.Pool(connection);
 
 // get all reviews from the database
 let getReviews = async (id) => {
-  let res = await pool.query(`SELECT * FROM homes INNER JOIN reviews ON homes.id = reviews.homeid WHERE reviews.homeid = ($1);`, [id]);
-  return res.rows;
+  return redis.getAsync(`homeID${id}`)
+    .then(results => {
+      if (results === null) {
+        let res = await pool.query(`SELECT * FROM homes INNER JOIN reviews ON homes.id = reviews.homeid WHERE reviews.homeid = ($1);`, [id]);
+        redis.setAsync(`homeID${id}`, JSON.stringify(res.rows));
+        return res.rows;
+      } else {
+        console.log(results);
+        return JSON.parse(results);
+      }
+    })
 }
 
 // add review to the database

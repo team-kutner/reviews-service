@@ -1,4 +1,5 @@
 require('newrelic');
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -11,7 +12,6 @@ const postgres = require('../db/postgres/connection.js')
 const initSeed = require('../db/initSeed');
 const aggregateReviewStars = require('./utils/aggregateReviewStars');
 const path = require('path')
-
 
 const app = express();
 app.use(cors());

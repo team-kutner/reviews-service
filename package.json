@@ -17,13 +17,17 @@
     "stress-test": "artillery run stressTest.yaml"
   },
   "dependencies": {
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "ligma": "^69.420.1337",
     "mongodb": "^3.1.10",
     "mongoose": "^5.3.16",
     "newrelic": "^7.0.2",
     "pg": "^8.5.1",
+    "redis": "^3.0.2",
     "save": "^2.4.0"
   },
   "devDependencies": {
